@@ -9,5 +9,5 @@ This script adds a button to Kiss' bookmark sites that displays some useful stat
  
 ### Features
   - supports all Kiss sites
-  - supports the bookmark list sharing feature of kissanime, kisscartoon and kissdrama
+  - supports the bookmark list sharing feature of KissAnime, KissCartoon and KissAsian
   - works with Chrome and Firefox
