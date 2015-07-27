@@ -7,16 +7,18 @@
 // @include      http://kisscartoon.me/BookmarkList
 // @include      http://kisscartoon.me/MyList/*
 // @include      http://kissasian.com/BookmarkList
-// @include	     http://kissasian.com/MyList/*
+// @include      http://kissasian.com/MyList/*
 // @author       Playacem
-// @updateURL    <TODO>
-// @downloadURL  <TODO>
+// @updateURL    https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-statistics/kiss-statistics.user.js
+// @downloadURL  https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-statistics/kiss-statistics.user.js
 // @require      http://code.jquery.com/jquery-latest.js
 // @grant        none
-// @version      0.0.50
+// @version      0.0.51
 // ==/UserScript==
 /*
 	CHANGELOG
+	0.0.51:
+		Added update and download urls
 	0.0.50:
 		First public release. 
 	0.0.31:
@@ -233,7 +235,7 @@ function create() {
 	var divHtml = "<div id='" + mainId + "' style='padding-top:10px;padding-bottom:10px'>" + buttonHtml + clear2InTable + tableHtml + "</div>";
 	
 	var catSelect = '#divListCategories';
-	// KissManga has no Category selector
+	// KissManga has no Category drop down selection menu
 	if(siteType == 'Manga') {catSelect = '.listing';}
 	
 	JQ(divHtml).insertBefore(catSelect);
@@ -244,7 +246,7 @@ function create() {
 	addClickFunctionality();
 };
 
-// load after 2 seconds to capture delayed categories
+// load after 2 seconds to capture delayed categories. Categories are loaded from the server asynchronously.
 JQ(window).load(function() {
 	setTimeout(function() {
 		create();
