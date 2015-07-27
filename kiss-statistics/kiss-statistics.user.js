@@ -13,10 +13,12 @@
 // @downloadURL  https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-statistics/kiss-statistics.user.js
 // @require      http://code.jquery.com/jquery-latest.js
 // @grant        none
-// @version      0.0.51
+// @version      0.0.52
 // ==/UserScript==
 /*
 	CHANGELOG
+	0.0.52:
+		Replace jQuery Symbol $ with JQ
 	0.0.51:
 		Added update and download urls
 	0.0.50:
@@ -71,7 +73,7 @@ function getCatArray() {
 	var selector = 'tr.trAnime';
 	if(type === 'Cartoon'){selector = 'tr.trCartoon';}
 	if(type === 'Drama'){selector = 'tr.trDrama';}
-	$(selector).each(function(index){
+	JQ(selector).each(function(index){
 		// get Category val
 		var tmpCat = $(this).attr('catname');
 		// imitate lstCats behaviour
