@@ -13,10 +13,12 @@
 // @downloadURL  https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-statistics/kiss-statistics.user.js
 // @require      http://code.jquery.com/jquery-latest.js
 // @grant        none
-// @version      0.0.52
+// @version      0.0.53
 // ==/UserScript==
 /*
 	CHANGELOG
+	0.0.53:
+		fixed script-breaking bug introduced in 0.0.52
 	0.0.52:
 		Replace jQuery Symbol $ with JQ
 	0.0.51:
@@ -43,6 +45,7 @@ var strRead = 'Completed';
 
 /* CONSTS*/
 /* DO NOT CHANGE UNDER ANY CIRCUMSTANCES! */
+var JQ = jQuery;
 const strAllAnimes = ' All Anime';
 const strAllCartoons = ' All Cartoons';
 const strAllDramas = ' All Drama';
@@ -55,7 +58,6 @@ const userClassTable = 'userStatTable';
 const userCompleted = 'userCompleted';
 const userOdd = 'odd';
 const catArr = getCatArray();
-var JQ = jQuery;
 /* UTILITY FUNCTIONS */
 
 /* You can't access the sites javascript variables in Firefox, so I wrote this function to replicate lstCats content */
