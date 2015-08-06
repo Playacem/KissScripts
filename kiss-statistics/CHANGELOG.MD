@@ -1,0 +1,13 @@
+CHANGELOG
+	0.0.53:
+		fixed script-breaking bug introduced in 0.0.52
+	0.0.52:
+		Replace jQuery Symbol $ with JQ
+	0.0.51:
+		Added update and download urls
+	0.0.50:
+		First public release.
+	0.0.31:
+		Changed Unread and Read to Not Completed and Completed
+	0.0.30:
+		KissAsian.com support.

@@ -15,21 +15,7 @@
 // @grant        none
 // @version      0.0.53
 // ==/UserScript==
-/*
-	CHANGELOG
-	0.0.53:
-		fixed script-breaking bug introduced in 0.0.52
-	0.0.52:
-		Replace jQuery Symbol $ with JQ
-	0.0.51:
-		Added update and download urls
-	0.0.50:
-		First public release. 
-	0.0.31:
-		Changed Unread and Read to Not Completed and Completed
-	0.0.30:
-		KissAsian.com support.
-*/
+
 /* VARS */
 // Seperator for the numbers
 var sep = '/';
@@ -92,19 +78,19 @@ function getCatArray() {
 function getVisibleUnreadSizeByCategoryName(type, categoryName) {
 	// handle KissManga separately as it does not have categories/folders and no link sharing option
 	if (type === 'Manga') {return JQ(selectorVisible).size();}
-	
+
 	// no category given assumes it means all categories combined (All X option in the drop down menu)
 	if (categoryName === undefined) {
 		if (type === 'Anime') {categoryName = strAllAnimes;}
 		if (type === 'Cartoon') {categoryName = strAllCartoons;}
 		if (type === 'Drama') {categoryName = strAllDramas;}
 	}
-	
+
 	// select indepently from a specific category all visible not completed row size
 	if (categoryName === strAllAnimes || categoryName === strAllCartoons || categoryName === strAllDramas) {
 		return JQ(selectorVisible).size();
 	}
-	
+
 	// handle the special 'Uncategorized' category
 	if (categoryName === strNoCategory) {
 		if (type === 'Cartoon') {return JQ("tr.trCartoon[catName=''] > td > " + selectorVisible ).size();}
@@ -122,7 +108,7 @@ function getTotalSizeByCategoryName(type, categoryName) {
 
 	// handle KissManga separately as it does not have categories/folders and no link sharing option
 	if (type === 'Manga') {return JQ('.aUnRead').size();}
-	
+
 	// no category given assumes it means all categories combined (All X option in the drop down menu)
 	if (categoryName == undefined) {
 		if (type === 'Anime') {categoryName = strAllAnimes;}
@@ -141,7 +127,7 @@ function getTotalSizeByCategoryName(type, categoryName) {
 		if (type === 'Drama') {return JQ("tr.trDrama[catName='']").size();}
 		return JQ("tr.trAnime[catName='']").size();
 	}
-	
+
 	// non special categories
 	if (type === 'Cartoon') {return JQ("tr.trCartoon[catName='" + categoryName + "']").size();}
 	if (type === 'Drama') {return JQ("tr.trDrama[catName='" + categoryName + "']").size();}
@@ -163,13 +149,13 @@ function getTableHtml(type) {
 	// add header
 	tableHtml += "<tr class='" + classTableHead + "'> <th width='" + widthCatName + "%'>" + strCatName + "</th> <th width='" + widthUnread + "%'>" + strUnread + "</th> <th width='" + widthRead + "%'>" + strRead + "</th> </tr>";
 	tableHtml += "<tr style='height: 10px'></tr>";//style row (the bookmark table has it too)
-	
+
 	var allTotal = getTotalSizeByCategoryName(type);
 	var allUnread = getVisibleUnreadSizeByCategoryName(type);
 	var allRead = allTotal - allUnread;
 	var oddEntry = true;
 	var additionalClasses = '';
-	
+
 	// add stripes to the rows
 	if(oddEntry){
 		additionalClasses += userOdd;
@@ -200,9 +186,9 @@ function getTableHtml(type) {
 			tableHtml += "<tr class='" + additionalClasses + "'> <td>" + catArr[index] + "</td> <td>" + currCatUnread + sep + currCatTotal + "</td> <td>" + currCatRead + sep + currCatTotal + "</td> </tr>";
 		}
 	}
-	
+
 	tableHtml += '</table>';
-	
+
 	return tableHtml;
 };
 
@@ -233,20 +219,20 @@ function addClickFunctionality() {
 function create() {
 	var siteType = getSiteType();
 	var tableHtml = getTableHtml(siteType);
-	
+
 	buttonHtml = "<a href='#' class='bigChar' onclick='return false;' id='btnToggleStats'> Show Statistics </a>";
 	var clear2InTable = "<div class='clear2 " + userClassTable + "' style='padding-top:10px'></div>";
 	var divHtml = "<div id='" + mainId + "' style='padding-top:10px;padding-bottom:10px'>" + buttonHtml + clear2InTable + tableHtml + "</div>";
-	
+
 	var catSelect = '#divListCategories';
 	// KissManga has no Category drop down selection menu
 	if(siteType == 'Manga') {catSelect = '.listing';}
-	
+
 	JQ(divHtml).insertBefore(catSelect);
 	JQ('#' + mainId).prev('div.clear2').remove();
 	// hide by default
 	JQ('.' + userClassTable).hide();
-	
+
 	addClickFunctionality();
 };
 
