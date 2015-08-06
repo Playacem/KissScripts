@@ -9,15 +9,9 @@
 // @downloadURL  https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-simple-infobox-hider/kiss-simple-infobox-hider.user.js
 // @require      http://code.jquery.com/jquery-latest.js
 // @grant        none
-// @version      0.0.2
+// @version      0.0.3
 // ==/UserScript==
-/*
-	CHANGELOG
-	0.0.2:
-		Fix kisscartoon url
-	0.0.1:
-		first release
-*/
+
 // do not change
 var JQ = jQuery;
 
@@ -31,7 +25,7 @@ function hideInfobox() {
 };
 
 // load after 2 seconds
-JQ(window).load(function() {
+JQ(document).ready(function() {
 	setTimeout(function() {
 		hideInfobox();
 	}, 2000);
