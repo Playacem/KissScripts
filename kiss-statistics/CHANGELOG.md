@@ -1,4 +1,8 @@
 # CHANGELOG  
+ - 0.0.54:
+   - Unified type checks.
+   - Replaced a lot of variables related to table creation with an object, that holds those values.
+   - Made css class determination use that new object.  
  - 0.0.53:  
    - fixed script-breaking bug introduced in 0.0.52  
  - 0.0.52:  

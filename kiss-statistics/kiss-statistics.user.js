@@ -13,7 +13,7 @@
 // @downloadURL  https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-statistics/kiss-statistics.user.js
 // @require      http://code.jquery.com/jquery-latest.js
 // @grant        none
-// @version      0.0.53
+// @version      0.0.54
 // ==/UserScript==
 
 /* VARS */
@@ -40,7 +40,7 @@ const selectorVisible = ".aUnRead[style!='display: none']";
 const classTable = 'listing';
 const classTableHead = 'head';
 const mainId = 'userscriptVisibleStats';
-const userClassTable = 'userStatTable';
+const userToggleTable = 'userStatTable';
 const userCompleted = 'userCompleted';
 const userOdd = 'odd';
 const catArr = getCatArray();
@@ -51,28 +51,33 @@ function getCatArray() {
 	// after http://stackoverflow.com/questions/9229645/remove-duplicates-from-javascript-array
 	type = getSiteType();
 	if(type === 'Manga'){return {};}
+
+	//filters a given array to include only unique values
 	function uniq(a) {
 		var seen = {};
 		return a.filter(function(item) {
 			return seen.hasOwnProperty(item) ? false : (seen[item] = true);
 		});
-	};
+	}
+
+	// get all used categories
 	var tmpArray = new Array();
 	var selector = 'tr.trAnime';
 	if(type === 'Cartoon'){selector = 'tr.trCartoon';}
 	if(type === 'Drama'){selector = 'tr.trDrama';}
-	JQ(selector).each(function(index){
+	jQuery(selector).each(function(index){
 		// get Category val
-		var tmpCat = $(this).attr('catname');
+		var tmpCat = jQuery(this).attr('catname');
 		// imitate lstCats behaviour
 		if(tmpCat === '') {tmpCat = strNoCategory;}
 		tmpArray.push(tmpCat);
 	});
 
+	// filter duplicates
 	var tmpFinalArray = uniq(tmpArray);
 	tmpFinalArray.sort();
 	return tmpFinalArray;
-};
+}
 
 /* Gets all to user visible unread rows by a specific category name and returns their size */
 function getVisibleUnreadSizeByCategoryName(type, categoryName) {
@@ -98,10 +103,10 @@ function getVisibleUnreadSizeByCategoryName(type, categoryName) {
 		return JQ("tr.trAnime[catName=''] > td > " + selectorVisible ).size();
 	}
 	// non special categories
-	if (type == 'Cartoon') {return JQ("tr.trCartoon[catName='"+ categoryName + "'] > td > " + selectorVisible ).size();}
-	if (type == 'Drama') {return JQ("tr.trDrama[catName='"+ categoryName + "'] > td > " + selectorVisible ).size();}
+	if (type === 'Cartoon') {return JQ("tr.trCartoon[catName='"+ categoryName + "'] > td > " + selectorVisible ).size();}
+	if (type === 'Drama') {return JQ("tr.trDrama[catName='"+ categoryName + "'] > td > " + selectorVisible ).size();}
 	return JQ("tr.trAnime[catName='" + categoryName + "'] > td > " + selectorVisible).size();
-};
+}
 
 /* Gets the total size (completed and not completed) by a specific Category name*/
 function getTotalSizeByCategoryName(type, categoryName) {
@@ -110,7 +115,7 @@ function getTotalSizeByCategoryName(type, categoryName) {
 	if (type === 'Manga') {return JQ('.aUnRead').size();}
 
 	// no category given assumes it means all categories combined (All X option in the drop down menu)
-	if (categoryName == undefined) {
+	if (categoryName === undefined) {
 		if (type === 'Anime') {categoryName = strAllAnimes;}
 		if (type === 'Cartoon') {categoryName = strAllCartoons;}
 		if (type === 'Drama') {categoryName = strAllDramas;}
@@ -132,7 +137,7 @@ function getTotalSizeByCategoryName(type, categoryName) {
 	if (type === 'Cartoon') {return JQ("tr.trCartoon[catName='" + categoryName + "']").size();}
 	if (type === 'Drama') {return JQ("tr.trDrama[catName='" + categoryName + "']").size();}
 	return JQ("tr.trAnime[catName='" + categoryName + "']").size();
-};
+}
 
 /* Adds an 's' if appropriate (basically add it if the Kiss site does so too) */
 function getPluralS(type) {
@@ -141,56 +146,77 @@ function getPluralS(type) {
 	if(type === 'Cartoon') {return 's';}
 	if(type === 'Drama') {return '';}
 	return '';
-};
+}
+
+/*
+	Returns a String that represents css classes to be added to a given table row
+*/
+function getCssClasses(statusObject) {
+	var cssClasses = new Array();
+	// alternate between odd class and no odd class
+	if (statusObject.odd) {
+		cssClasses.push(userOdd);
+		statusObject.odd = false;
+	} else {
+		statusObject.odd = true;
+	}
+
+	// add userCompleted css class
+	// if there aren't any not completed elements in a category
+	if (statusObject.unread === 0) {
+		cssClasses.push(userCompleted);
+	}
+
+	if (cssClasses.length === 0) {
+		return '';
+	}
+
+	return cssClasses.join(' ');
+}
 
 /* gets the html that represents the data in a table */
 function getTableHtml(type) {
-	var tableHtml = "<table class='" + classTable + ' ' + userClassTable +"'>";
+	var tableHtml = "<table class='" + classTable + ' ' + userToggleTable +"'>";
 	// add header
 	tableHtml += "<tr class='" + classTableHead + "'> <th width='" + widthCatName + "%'>" + strCatName + "</th> <th width='" + widthUnread + "%'>" + strUnread + "</th> <th width='" + widthRead + "%'>" + strRead + "</th> </tr>";
 	tableHtml += "<tr style='height: 10px'></tr>";//style row (the bookmark table has it too)
 
-	var allTotal = getTotalSizeByCategoryName(type);
-	var allUnread = getVisibleUnreadSizeByCategoryName(type);
-	var allRead = allTotal - allUnread;
-	var oddEntry = true;
-	var additionalClasses = '';
+	var statusObj = {
+		'odd' : true,
+		'category' : "All " + type + getPluralS(type),
+		'total' : getTotalSizeByCategoryName(type),
+		'unread' : getVisibleUnreadSizeByCategoryName(type),
+		'read' : getTotalSizeByCategoryName(type) - getVisibleUnreadSizeByCategoryName(type)
+	};
 
-	// add stripes to the rows
-	if(oddEntry){
-		additionalClasses += userOdd;
-		oddEntry = !oddEntry;
-	} else {
-		oddEntry = !oddEntry;
-	}
-	// if a category is completed, add this css class. To be used in the future
-	if(allUnread == 0){ additionalClasses += (' ' + userCompleted);}
 	// All X category
-	tableHtml += "<tr class='" + additionalClasses + "'> <td>All " + type + getPluralS(type) +"</td> <td>" + allUnread + sep + allTotal + "</td> <td>" + allRead + sep + allTotal + "</td> </tr>";
+	tableHtml += "<tr class='" + getCssClasses(statusObj) + "'> <td>" + statusObj.category + "</td> <td>" + statusObj.unread + sep + statusObj.total + "</td> <td>" + statusObj.read + sep + statusObj.total + "</td> </tr>";
 
 	// do not check for categories if it is KissManga
-	if(type != 'Manga') {
+	if(type !== 'Manga') {
 		// go over all categories
 		for (var index = 0; index < catArr.length; ++index) {
-			additionalClasses = '';
-			var currCatTotal = getTotalSizeByCategoryName(type, catArr[index]);
-			var currCatUnread = getVisibleUnreadSizeByCategoryName(type, catArr[index]);
-			var currCatRead = currCatTotal - currCatUnread;
-			// move css class stuff in extra function?
-			if(oddEntry){
-				additionalClasses += userOdd;
-				oddEntry = !oddEntry;
-			} else {oddEntry = !oddEntry;}
-			if(currCatUnread == 0){additionalClasses += (' ' + userCompleted);}
+			updateStatusObject(statusObj, catArr[index]);
 			// add entry for the current category
-			tableHtml += "<tr class='" + additionalClasses + "'> <td>" + catArr[index] + "</td> <td>" + currCatUnread + sep + currCatTotal + "</td> <td>" + currCatRead + sep + currCatTotal + "</td> </tr>";
+			tableHtml += "<tr class='" + getCssClasses(statusObj) + "'> <td>" + statusObj.category + "</td> <td>" + statusObj.unread + sep + statusObj.total + "</td> <td>" + statusObj.read + sep + statusObj.total + "</td> </tr>";
 		}
 	}
 
 	tableHtml += '</table>';
 
 	return tableHtml;
-};
+}
+
+/*
+Updates the statusObject with the current row's data
+*/
+function updateStatusObject(statusObject, categoryName) {
+	var type = getSiteType();
+	statusObject.category = categoryName;
+	statusObject.total = getTotalSizeByCategoryName(type, categoryName);
+	statusObject.unread = getVisibleUnreadSizeByCategoryName(type, categoryName);
+	statusObject.read = statusObject.total - statusObject.unread;
+}
 
 /* determine the Site this script is running on */
 function getSiteType() {
@@ -200,41 +226,42 @@ function getSiteType() {
 	if (url.indexOf('kisscartoon') != -1) {return 'Cartoon';}
 	if (url.indexOf('kissasian') != -1) {return 'Drama';}
 	return 'Anime';
-};
+}
 
 /* Makes the button actually do stuff */
 function addClickFunctionality() {
 	var statTableHidden = true;
 	JQ('#btnToggleStats').click(function() {
 		statTableHidden = !statTableHidden;
-		JQ('.' + userClassTable).fadeToggle(400);
+		JQ('.' + userToggleTable).fadeToggle(400);
 		if (statTableHidden) {
 			JQ('#btnToggleStats').text('Show Statistics');
 		}else {
 			JQ('#btnToggleStats').text('Hide Statistics');
 		}
 	});
-};
+}
+
 /* combine everything */
 function create() {
 	var siteType = getSiteType();
 	var tableHtml = getTableHtml(siteType);
 
 	buttonHtml = "<a href='#' class='bigChar' onclick='return false;' id='btnToggleStats'> Show Statistics </a>";
-	var clear2InTable = "<div class='clear2 " + userClassTable + "' style='padding-top:10px'></div>";
+	var clear2InTable = "<div class='clear2 " + userToggleTable + "' style='padding-top:10px'></div>";
 	var divHtml = "<div id='" + mainId + "' style='padding-top:10px;padding-bottom:10px'>" + buttonHtml + clear2InTable + tableHtml + "</div>";
 
 	var catSelect = '#divListCategories';
 	// KissManga has no Category drop down selection menu
-	if(siteType == 'Manga') {catSelect = '.listing';}
+	if(siteType === 'Manga') {catSelect = '.listing';}
 
 	JQ(divHtml).insertBefore(catSelect);
-	JQ('#' + mainId).prev('div.clear2').remove();
+	JQ('#' + mainId).prev('div .clear2').remove();
 	// hide by default
-	JQ('.' + userClassTable).hide();
+	JQ('.' + userToggleTable).hide();
 
 	addClickFunctionality();
-};
+}
 
 // load after 2 seconds to capture delayed categories. Categories are loaded from the server asynchronously.
 JQ(window).load(function() {
