@@ -1,20 +1,20 @@
 // ==UserScript==
-// @name         Kiss Statistics
-// @description  Adds a stats button to kissanime.com, kissmanga.com, kisscartoon.me and kissasian.com bookmark sites
-// @include      http://kissanime.com/BookmarkList
-// @include      http://kissanime.com/MyList/*
-// @include      http://kissmanga.com/BookmarkList
-// @include      http://kisscartoon.me/BookmarkList
-// @include      http://kisscartoon.me/MyList/*
-// @include      http://kissasian.com/BookmarkList
-// @include      http://kissasian.com/MyList/*
-// @author       Playacem
-// @updateURL    https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-statistics/kiss-statistics.user.js
-// @downloadURL  https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-statistics/kiss-statistics.user.js
-// @require      http://code.jquery.com/jquery-latest.js
-// @grant        none
-// @run-at       document-idle
-// @version      0.1.0
+// @name				 	Kiss Statistics
+// @description		Adds a stats button to kissanime.com, kissmanga.com, kisscartoon.me and kissasian.com bookmark sites
+// @include				http://kissanime.com/BookmarkList
+// @include				http://kissanime.com/MyList/*
+// @include				http://kissmanga.com/BookmarkList
+// @include				http://kisscartoon.me/BookmarkList
+// @include				http://kisscartoon.me/MyList/*
+// @include				http://kissasian.com/BookmarkList
+// @include				http://kissasian.com/MyList/*
+// @author			 	Playacem
+// @updateURL			https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-statistics/kiss-statistics.user.js
+// @downloadURL		https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-statistics/kiss-statistics.user.js
+// @require				http://code.jquery.com/jquery-latest.js
+// @grant					none
+// @run-at				document-idle
+// @version				0.1.0
 // ==/UserScript==
 
 /* VARS */
@@ -206,7 +206,7 @@ function addClickFunctionality() {
  * ****************************************************************************/
 /* Gets the sites default link color */
 function getLinkColor() {
-  if(SITE_TYPE === SITE_ANIME) {return '#d5f406';}
+	if(SITE_TYPE === SITE_ANIME) {return '#d5f406';}
 	if(SITE_TYPE === SITE_MANGA) {return '#72cefe';}
 	if(SITE_TYPE === SITE_CARTOON) {return '#ff9600';}
 	if(SITE_TYPE === SITE_DRAMA) {return '#ecc835';}
@@ -228,69 +228,69 @@ function addTableStylesToPage() {
 	var styleContent = [
 		// Some default settings like font related settings and text color
 		'.google-visualization-table-table {',
-		'  font-family: "Tahoma",Arial,Helvetica,sans-serif;',
-		'  font-size: 12px;',
-		'  background-color: '+COLOR_BG_DEFAULT+';',
-		'  cursor: default;',
-		'  margin: 0;',
-		'  border-spacing: 0;',
-		'  border-collapse: collapse;',
-		'  line-height: 18px;',
-		'  color: '+COLOR_FONT+';',
-		'  border-style: none !important;',
-		'  border-width: 0px !important;',
+		'	font-family: "Tahoma",Arial,Helvetica,sans-serif;',
+		'	font-size: 12px;',
+		'	background-color: '+COLOR_BG_DEFAULT+';',
+		'	cursor: default;',
+		'	margin: 0;',
+		'	border-spacing: 0;',
+		'	border-collapse: collapse;',
+		'	line-height: 18px;',
+		'	color: '+COLOR_FONT+';',
+		'	border-style: none !important;',
+		'	border-width: 0px !important;',
 		'}',
 
 		// force center alignment for numbers.
 		'.google-visualization-table-td-number {',
-		'  text-align: center !important;',
-		'  white-space: nowrap !important;',
+		'	text-align: center !important;',
+		'	white-space: nowrap !important;',
 		'}',
 
 		// set text color for the header and add odd colored background
 		'.kiss-statistics-header {',
-		'  color: '+COLOR_FONT+';',
-		'  background-color: '+COLOR_BG_ODD+';',
+		'	color: '+COLOR_FONT+';',
+		'	background-color: '+COLOR_BG_ODD+';',
 		'}',
 
 		// add border to the bottom. Similiar to BookmarkList
 		'.kiss-statistics-header-cell {',
-		'  border-style: none !important;',
-		'  border-width: 0px !important;',
-		'  border-bottom-style: solid !important;',
-		'  border-bottom-width: 1px !important;',
+		'	border-style: none !important;',
+		'	border-width: 0px !important;',
+		'	border-bottom-style: solid !important;',
+		'	border-bottom-width: 1px !important;',
 		// make header text bigger, bold and centered
-		'  font-size: 120%;',
-		'  font-weight: bold;',
-		'  text-align: center;',
+		'	font-size: 120%;',
+		'	font-weight: bold;',
+		'	text-align: center;',
 		'}',
 
 		// default black background for a row entry
 		'.kiss-statistics-table-row {',
-		'  background-color: '+COLOR_BG_DEFAULT+';',
-		'  height: 25px;',
+		'	background-color: '+COLOR_BG_DEFAULT+';',
+		'	height: 25px;',
 		'}',
 
 		// odd rows get the same highlighting as the BookmarkList ones
 		'.kiss-statistics-table-row-odd {',
-		'  background: none repeat scroll 0 0 '+COLOR_BG_ODD+';',
+		'	background: none repeat scroll 0 0 '+COLOR_BG_ODD+';',
 		'}',
 
 		// copy BookmarkList hover effect
 		'.kiss-statistics-table-row-hover {',
-		'  background: none repeat scroll 0 0 '+COLOR_BG_HOVER+';',
+		'	background: none repeat scroll 0 0 '+COLOR_BG_HOVER+';',
 		'}',
 
 		// no borders and default centered cells
 		'.kiss-statistics-cell {',
-		'  border: none !important;',
-		'  border-width: 0px !important; ',
-		'  text-align: center;',
+		'	border: none !important;',
+		'	border-width: 0px !important; ',
+		'	text-align: center;',
 		'}',
 
 		// the sites link color
 		'.kiss-statistics-row-numbers {',
-		'  color: '+COLOR_ROW_NUMBERS+';',
+		'	color: '+COLOR_ROW_NUMBERS+';',
 		'}'
 	];
 	styleNode.textContent = styleContent.join("");
@@ -322,13 +322,13 @@ function drawTable() {
 	// set the previously in addTableStylesToPage defined classes to be used by the table
 	var cssClasses = {
 		'headerRow': 'kiss-statistics-header',
-    'tableRow': 'kiss-statistics-table-row',
-    'oddTableRow': 'kiss-statistics-table-row-odd',
-    'selectedTableRow': 'kiss-statistics-table-row-hover',
-    'hoverTableRow': 'kiss-statistics-table-row-hover',
-    'headerCell': 'kiss-statistics-header-cell',
-    'tableCell': 'kiss-statistics-cell',
-    'rowNumberCell': 'kiss-statistics-row-numbers'
+		'tableRow': 'kiss-statistics-table-row',
+		'oddTableRow': 'kiss-statistics-table-row-odd',
+		'selectedTableRow': 'kiss-statistics-table-row-hover',
+		'hoverTableRow': 'kiss-statistics-table-row-hover',
+		'headerCell': 'kiss-statistics-header-cell',
+		'tableCell': 'kiss-statistics-cell',
+		'rowNumberCell': 'kiss-statistics-row-numbers'
 	};
 
 	// various options for the table
