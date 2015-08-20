@@ -1,17 +1,24 @@
 # CHANGELOG  
- - 0.0.54:
-   - Unified type checks.
-   - Replaced a lot of variables related to table creation with an object, that holds those values.
-   - Made css class determination use that new object.  
- - 0.0.53:  
-   - fixed script-breaking bug introduced in 0.0.52  
- - 0.0.52:  
-   - Replace jQuery Symbol $ with JQ  
- - 0.0.51:  
-   - Added update and download urls  
- - 0.0.50:  
-   - First public release.  
- - 0.0.31:  
-   - Changed Unread and Read to Not Completed and Completed  
- - 0.0.30:  
-   - KissAsian.com support.  
+- 0.1.0:
+ - It is now recommend to use Scriptish for Firefox instead of Greasemonkey!
+ - Rewrote a lot of code. Now uses [Google's charts api](https://developers.google.com/chart/)
+ - You can now sort the columns.
+ - Added Row numbers.
+ - Added a separate column for total entries per category
+ - Code got organized in separate sections. Ex: ``` Visualization, Script, Control, ...```
+- 0.0.54:
+ - Unified type checks.
+ - Replaced a lot of variables related to table creation with an object, that holds those values.
+ - Made css class determination use that new object.  
+- 0.0.53:  
+ - fixed script-breaking bug introduced in 0.0.52  
+- 0.0.52:  
+ - Replace jQuery Symbol $ with JQ  
+- 0.0.51:  
+ - Added update and download urls  
+- 0.0.50:  
+ - First public release.  
+- 0.0.31:  
+ - Changed Unread and Read to Not Completed and Completed  
+- 0.0.30:  
+ - KissAsian.com support.  
