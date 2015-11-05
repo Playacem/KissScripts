@@ -1,4 +1,6 @@
 # CHANGELOG  
+- 0.1.1:
+ - Fixed KissAnime support
 - 0.1.0:
  - It is now recommend to use Scriptish for Firefox instead of Greasemonkey!
  - Rewrote a lot of code. Now uses [Google's charts api](https://developers.google.com/chart/)

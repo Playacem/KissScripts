@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name				 	Kiss Statistics
 // @description		Adds a stats button to kissanime.com, kissmanga.com, kisscartoon.me and kissasian.com bookmark sites
-// @include				http://kissanime.com/BookmarkList
-// @include				http://kissanime.com/MyList/*
+// @include				http://kissanime.to/BookmarkList
+// @include				http://kissanime.to/MyList/*
 // @include				http://kissmanga.com/BookmarkList
 // @include				http://kisscartoon.me/BookmarkList
 // @include				http://kisscartoon.me/MyList/*
@@ -14,7 +14,7 @@
 // @require				http://code.jquery.com/jquery-latest.js
 // @grant					none
 // @run-at				document-idle
-// @version				0.1.0
+// @version				0.1.1
 // ==/UserScript==
 
 /* VARS */

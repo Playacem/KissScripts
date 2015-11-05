@@ -1,4 +1,6 @@
 # CHANGELOG
+ - 0.0.5:
+  - Fixed KissAnime support
  - 0.0.4:
   - Made script more reliable.
    - The document ready event might have fired before the script was run. Now it fires independently.
