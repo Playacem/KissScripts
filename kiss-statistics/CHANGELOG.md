@@ -1,4 +1,6 @@
 # CHANGELOG  
+- 0.1.2:
+ - Fixed KissAnime support (HTTP to HTTPS switch)
 - 0.1.1:
  - Fixed KissAnime support
 - 0.1.0:
