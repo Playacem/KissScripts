@@ -14,7 +14,7 @@
 // @require				http://code.jquery.com/jquery-latest.js
 // @grant				none
 // @run-at				document-idle
-// @version				0.1.2
+// @version				0.1.3
 // ==/UserScript==
 
 /* VARS */
@@ -107,7 +107,6 @@ function getSiteType() {
 
 /* Adds an 's' if appropriate (basically add it if the Kiss site does so too) */
 function getPluralS() {
-    use strict;
     if (SITE_TYPE === SITE_ANIME) {
         return '';
     }
