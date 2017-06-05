@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name				Kiss Statistics
 // @description	        Adds a stats button to kissanime.com, kissmanga.com, kisscartoon.me and kissasian.com bookmark sites
-// @include				https://kissanime.to/BookmarkList
-// @include				https://kissanime.to/MyList/*
+// @include				http://kissanime.ru/BookmarkList
+// @include				http://kissanime.ru/MyList/*
 // @include				http://kissmanga.com/BookmarkList
 // @include				http://kisscartoon.me/BookmarkList
 // @include				http://kisscartoon.me/MyList/*
@@ -14,7 +14,7 @@
 // @require				http://code.jquery.com/jquery-latest.js
 // @grant				none
 // @run-at				document-idle
-// @version				0.1.3
+// @version				0.1.4
 // ==/UserScript==
 
 /* VARS */
@@ -53,7 +53,7 @@ function getCatArray() {
     // after http://stackoverflow.com/questions/9229645/remove-duplicates-from-javascript-array
 
     if (SITE_TYPE === SITE_MANGA) {
-        return new Array();
+        return [];
     }
 
     //filters a given array to include only unique values
@@ -65,7 +65,7 @@ function getCatArray() {
     }
 
     // get all used categories
-    var tmpArray = new Array();
+    var tmpArray = [];
     var selector = 'tr.trAnime';
     if (SITE_TYPE === SITE_CARTOON) {
         selector = 'tr.trCartoon';
@@ -201,7 +201,7 @@ function getCompletedSize(categoryName) {
 
 /* Gathers data in an array filled with objects */
 function getDataArray() {
-    var array = new Array();
+    var array = [];
     var allCombined = {
         'category': " All " + SITE_TYPE + getPluralS(),
         'total': getTotalSize(),

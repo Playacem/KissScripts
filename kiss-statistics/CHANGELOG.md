@@ -1,4 +1,6 @@
 # CHANGELOG  
+- 0.1.4:
+ - Fixed KissAnime support (switch to HTTP kissanime.ru)
 - 0.1.3:
  - Fixed script-breaking bug involving 'use strict'
 - 0.1.2:
