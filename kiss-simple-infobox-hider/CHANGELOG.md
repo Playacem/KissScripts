@@ -1,4 +1,6 @@
 # CHANGELOG
+ - 0.0.7:
+  - Fixed KissAnime support (switch to HTTP kissanime.ru)
  - 0.0.6:
   - Fixed KissAnime support (HTTP to HTTPS switch)
  - 0.0.5:
