@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- 0.1.5:
+  - Fixed KimCartoon, KissAsian and added ReadComicOnline
 - 0.1.4:
   - Fixed KissAnime support (switch to HTTP kissanime.ru)
 - 0.1.3:

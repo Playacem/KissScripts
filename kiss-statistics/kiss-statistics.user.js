@@ -4,17 +4,19 @@
 // @include				http://kissanime.ru/BookmarkList
 // @include				http://kissanime.ru/MyList/*
 // @include				http://kissmanga.com/BookmarkList
-// @include				http://kisscartoon.me/BookmarkList
-// @include				http://kisscartoon.me/MyList/*
-// @include				http://kissasian.com/BookmarkList
-// @include				http://kissasian.com/MyList/*
+// @include				http://kimcartoon.me/BookmarkList
+// @include				http://kimcartoon.me/MyList/*
+// @include				http://kissasian.ch/BookmarkList
+// @include				http://kissasian.ch/MyList/*
+// @include				http://readcomiconline.to/BookmarkList
+// @include				http://readcomiconline.to/MyList/*
 // @author              Playacem
 // @updateURL			https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-statistics/kiss-statistics.user.js
 // @downloadURL		    https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-statistics/kiss-statistics.user.js
 // @require				http://code.jquery.com/jquery-latest.js
 // @grant				none
 // @run-at				document-idle
-// @version				0.1.4
+// @version				0.1.5
 // ==/UserScript==
 
 /* VARS */
@@ -40,6 +42,7 @@ const SITE_ANIME = 'Anime';
 const SITE_MANGA = 'Manga';
 const SITE_CARTOON = 'Cartoon';
 const SITE_DRAMA = 'Drama';
+const SITE_COMIC = 'Comic';
 const SITE_TYPE = getSiteType();
 
 const CATEGORY_ARRAY = getCatArray();
@@ -73,6 +76,9 @@ function getCatArray() {
     if (SITE_TYPE === SITE_DRAMA) {
         selector = 'tr.trDrama';
     }
+    if (SITE_TYPE === SITE_COMIC) {
+        selector = 'tr.trComic';
+    }
     jQuery(selector).each(function (index) {
         // get Category val
         var tmpCat = jQuery(this).attr('catname');
@@ -96,11 +102,14 @@ function getSiteType() {
     if (url.indexOf('kissmanga') !== -1) {
         return SITE_MANGA;
     }
-    if (url.indexOf('kisscartoon') !== -1) {
+    if (url.indexOf('kimcartoon') !== -1) {
         return SITE_CARTOON;
     }
     if (url.indexOf('kissasian') !== -1) {
         return SITE_DRAMA;
+    }
+    if (url.indexOf('readcomiconline') !== -1) {
+        return SITE_COMIC;
     }
     return SITE_ANIME;
 }
@@ -117,6 +126,9 @@ function getPluralS() {
         return 's';
     }
     if (SITE_TYPE === SITE_DRAMA) {
+        return '';
+    }
+    if (SITE_TYPE === SITE_COMIC) {
         return '';
     }
     return '';
@@ -148,6 +160,9 @@ function getTotalSize(categoryName) {
         if (SITE_TYPE === SITE_DRAMA) {
             return JQ("tr.trDrama[catName='']").size();
         }
+        if (SITE_TYPE === SITE_COMIC) {
+            return JQ("tr.trComic[catName='']").size();
+        }
         return JQ("tr.trAnime[catName='']").size();
     }
 
@@ -157,6 +172,9 @@ function getTotalSize(categoryName) {
     }
     if (SITE_TYPE === SITE_DRAMA) {
         return JQ("tr.trDrama[catName='" + categoryName + "']").size();
+    }
+    if (SITE_TYPE === SITE_COMIC) {
+        return JQ("tr.trComic[catName='" + categoryName + "']").size();
     }
     return JQ("tr.trAnime[catName='" + categoryName + "']").size();
 }
@@ -182,6 +200,9 @@ function getNonCompletedSize(categoryName) {
         if (SITE_TYPE === SITE_DRAMA) {
             return JQ("tr.trDrama[catName=''] > td > " + SELECTOR_VISIBLE).size();
         }
+        if (SITE_TYPE === SITE_COMIC) {
+            return JQ("tr.trComic[catName=''] > td > " + SELECTOR_VISIBLE).size();
+        }
         return JQ("tr.trAnime[catName=''] > td > " + SELECTOR_VISIBLE).size();
     }
     // non special categories
@@ -190,6 +211,9 @@ function getNonCompletedSize(categoryName) {
     }
     if (SITE_TYPE === SITE_DRAMA) {
         return JQ("tr.trDrama[catName='" + categoryName + "'] > td > " + SELECTOR_VISIBLE).size();
+    }
+    if (SITE_TYPE === SITE_COMIC) {
+        return JQ("tr.trComic[catName='" + categoryName + "'] > td > " + SELECTOR_VISIBLE).size();
     }
     return JQ("tr.trAnime[catName='" + categoryName + "'] > td > " + SELECTOR_VISIBLE).size();
 }
