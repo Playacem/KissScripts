@@ -8,6 +8,7 @@ This script adds a button to Kiss' bookmark sites that displays some useful stat
 - KissManga
 - KissCartoon
 - KissAsian
+- ReadComicOnline
 
 ## Features
 

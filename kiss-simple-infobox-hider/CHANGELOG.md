@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- 0.0.8:
+  - Fixed KimCartoon and KissAsian support
 - 0.0.7:
   - Fixed KissAnime support (switch to HTTP kissanime.ru)
 - 0.0.6:
