@@ -1,5 +1,8 @@
 # CHANGELOG
 
+- 0.0.9:
+  - Fixed  KissAsian support (now .sh)
+  - Use https for jQuery dependency
 - 0.0.8:
   - Fixed KimCartoon and KissAsian support
 - 0.0.7:

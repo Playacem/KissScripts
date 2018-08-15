@@ -6,17 +6,17 @@
 // @include				http://kissmanga.com/BookmarkList
 // @include				http://kimcartoon.me/BookmarkList
 // @include				http://kimcartoon.me/MyList/*
-// @include				http://kissasian.ch/BookmarkList
-// @include				http://kissasian.ch/MyList/*
+// @include				http://kissasian.sh/BookmarkList
+// @include				http://kissasian.sh/MyList/*
 // @include				http://readcomiconline.to/BookmarkList
 // @include				http://readcomiconline.to/MyList/*
 // @author              Playacem
 // @updateURL			https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-statistics/kiss-statistics.user.js
 // @downloadURL		    https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-statistics/kiss-statistics.user.js
-// @require				http://code.jquery.com/jquery-latest.js
+// @require				https://code.jquery.com/jquery-latest.js
 // @grant				none
 // @run-at				document-idle
-// @version				0.1.5
+// @version				0.1.6
 // ==/UserScript==
 
 /* VARS */
