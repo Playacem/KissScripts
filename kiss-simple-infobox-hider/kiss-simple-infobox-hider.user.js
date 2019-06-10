@@ -2,7 +2,7 @@
 // @name				Kiss Simple Infobox hider
 // @description		    Hides the infobox on kissanime.com, kisscartoon.me and kissasian.com player sites
 // @include				http://kissanime.ru/Anime/*/*
-// @include				http://kimcartoon.me/Cartoon/*/*
+// @include				http://kimcartoon.to/Cartoon/*/*
 // @include				http://kissasian.sh/Drama/*/*
 // @author              Playacem
 // @updateURL			https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-simple-infobox-hider/kiss-simple-infobox-hider.user.js
@@ -10,7 +10,7 @@
 // @require				https://code.jquery.com/jquery-latest.js
 // @grant				none
 // @run-at              document-end
-// @version				0.0.9
+// @version				0.0.10
 // ==/UserScript==
 
 // do not change
