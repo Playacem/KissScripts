@@ -4,8 +4,8 @@
 // @include				http://kissanime.ru/BookmarkList
 // @include				http://kissanime.ru/MyList/*
 // @include				http://kissmanga.com/BookmarkList
-// @include				http://kimcartoon.me/BookmarkList
-// @include				http://kimcartoon.me/MyList/*
+// @include				http://kimcartoon.to/BookmarkList
+// @include				http://kimcartoon.to/MyList/*
 // @include				http://kissasian.sh/BookmarkList
 // @include				http://kissasian.sh/MyList/*
 // @include				http://readcomiconline.to/BookmarkList
@@ -16,7 +16,7 @@
 // @require				https://code.jquery.com/jquery-latest.js
 // @grant				none
 // @run-at				document-idle
-// @version				0.1.6
+// @version				0.1.7
 // ==/UserScript==
 
 /* VARS */

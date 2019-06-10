@@ -1,7 +1,9 @@
 # CHANGELOG
 
+- 0.1.7:
+  - Fixed KimCartoon support (now .to)
 - 0.1.6:
-  - Fixed  KissAsian support (now .sh)
+  - Fixed KissAsian support (now .sh)
   - Use https for jQuery dependency
 - 0.1.5:
   - Fixed KimCartoon, KissAsian and added ReadComicOnline
