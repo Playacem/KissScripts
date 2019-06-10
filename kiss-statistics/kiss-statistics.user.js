@@ -1,22 +1,22 @@
 // ==UserScript==
 // @name				Kiss Statistics
 // @description	        Adds a stats button to kissanime.com, kissmanga.com, kisscartoon.me and kissasian.com bookmark sites
-// @include				http://kissanime.ru/BookmarkList
-// @include				http://kissanime.ru/MyList/*
-// @include				http://kissmanga.com/BookmarkList
-// @include				http://kimcartoon.to/BookmarkList
-// @include				http://kimcartoon.to/MyList/*
-// @include				http://kissasian.sh/BookmarkList
-// @include				http://kissasian.sh/MyList/*
-// @include				http://readcomiconline.to/BookmarkList
-// @include				http://readcomiconline.to/MyList/*
+// @include				https://kissanime.ru/BookmarkList
+// @include				https://kissanime.ru/MyList/*
+// @include				https://kissmanga.com/BookmarkList
+// @include				https://kimcartoon.to/BookmarkList
+// @include				https://kimcartoon.to/MyList/*
+// @include				https://kissasian.sh/BookmarkList
+// @include				https://kissasian.sh/MyList/*
+// @include				https://readcomiconline.to/BookmarkList
+// @include				https://readcomiconline.to/MyList/*
 // @author              Playacem
 // @updateURL			https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-statistics/kiss-statistics.user.js
 // @downloadURL		    https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-statistics/kiss-statistics.user.js
 // @require				https://code.jquery.com/jquery-latest.js
 // @grant				none
 // @run-at				document-idle
-// @version				0.1.7
+// @version				0.1.8
 // ==/UserScript==
 
 /* VARS */

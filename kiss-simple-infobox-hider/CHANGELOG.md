@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- 0.0.11:
+  - HTTPS support for all sites
 - 0.0.10:
   - Fixed KimCartoon support (now .to)
 - 0.0.9:
