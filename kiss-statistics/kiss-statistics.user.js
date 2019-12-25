@@ -1,22 +1,22 @@
 // ==UserScript==
-// @name				Kiss Statistics
-// @description	        Adds a stats button to kissanime.com, kissmanga.com, kisscartoon.me and kissasian.com bookmark sites
-// @include				https://kissanime.ru/BookmarkList
-// @include				https://kissanime.ru/MyList/*
-// @include				https://kissmanga.com/BookmarkList
-// @include				https://kimcartoon.to/BookmarkList
-// @include				https://kimcartoon.to/MyList/*
-// @include				https://kissasian.sh/BookmarkList
-// @include				https://kissasian.sh/MyList/*
-// @include				https://readcomiconline.to/BookmarkList
-// @include				https://readcomiconline.to/MyList/*
+// @name                Kiss Statistics
+// @description         Adds a stats button to kissanime.com, kissmanga.com, kisscartoon.me and kissasian.com bookmark sites
+// @include             https://kissanime.ru/BookmarkList
+// @include             https://kissanime.ru/MyList/*
+// @include             https://kissmanga.com/BookmarkList
+// @include             https://kimcartoon.to/BookmarkList
+// @include             https://kimcartoon.to/MyList/*
+// @include             https://kissasian.sh/BookmarkList
+// @include             https://kissasian.sh/MyList/*
+// @include             https://readcomiconline.to/BookmarkList
+// @include             https://readcomiconline.to/MyList/*
 // @author              Playacem
-// @updateURL			https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-statistics/kiss-statistics.user.js
-// @downloadURL		    https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-statistics/kiss-statistics.user.js
-// @require				https://code.jquery.com/jquery-latest.js
-// @grant				none
-// @run-at				document-idle
-// @version				0.1.8
+// @updateURL           https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-statistics/kiss-statistics.user.js
+// @downloadURL         https://raw.githubusercontent.com/Playacem/KissScripts/master/kiss-statistics/kiss-statistics.user.js
+// @require             https://code.jquery.com/jquery-latest.js
+// @grant               none
+// @run-at              document-idle
+// @version             0.1.8
 // ==/UserScript==
 
 /* VARS */
@@ -298,73 +298,73 @@ function addTableStylesToPage() {
     const COLOR_ROW_NUMBERS = getLinkColor();
 
     var styleContent = [
-		// Some default settings like font related settings and text color
-		'.google-visualization-table-table {',
-		'	font-family: "Tahoma",Arial,Helvetica,sans-serif;',
-		'	font-size: 12px;',
-		'	background-color: ' + COLOR_BG_DEFAULT + ';',
-		'	cursor: default;',
-		'	margin: 0;',
-		'	border-spacing: 0;',
-		'	border-collapse: collapse;',
-		'	line-height: 18px;',
-		'	color: ' + COLOR_FONT + ';',
-		'	border-style: none !important;',
-		'	border-width: 0px !important;',
-		'}',
+        // Some default settings like font related settings and text color
+        '.google-visualization-table-table {',
+        '    font-family: "Tahoma",Arial,Helvetica,sans-serif;',
+        '    font-size: 12px;',
+        '    background-color: ' + COLOR_BG_DEFAULT + ';',
+        '    cursor: default;',
+        '    margin: 0;',
+        '    border-spacing: 0;',
+        '    border-collapse: collapse;',
+        '    line-height: 18px;',
+        '    color: ' + COLOR_FONT + ';',
+        '    border-style: none !important;',
+        '    border-width: 0px !important;',
+        '}',
 
-		// force center alignment for numbers.
-		'.google-visualization-table-td-number {',
-		'	text-align: center !important;',
-		'	white-space: nowrap !important;',
-		'}',
+        // force center alignment for numbers.
+        '.google-visualization-table-td-number {',
+        '    text-align: center !important;',
+        '    white-space: nowrap !important;',
+        '}',
 
-		// set text color for the header and add odd colored background
-		'.kiss-statistics-header {',
-		'	color: ' + COLOR_FONT + ';',
-		'	background-color: ' + COLOR_BG_ODD + ';',
-		'}',
+        // set text color for the header and add odd colored background
+        '.kiss-statistics-header {',
+        '    color: ' + COLOR_FONT + ';',
+        '    background-color: ' + COLOR_BG_ODD + ';',
+        '}',
 
-		// add border to the bottom. Similiar to BookmarkList
-		'.kiss-statistics-header-cell {',
-		'	border-style: none !important;',
-		'	border-width: 0px !important;',
-		'	border-bottom-style: solid !important;',
-		'	border-bottom-width: 1px !important;',
-		// make header text bigger, bold and centered
-		'	font-size: 120%;',
-		'	font-weight: bold;',
-		'	text-align: center;',
-		'}',
+        // add border to the bottom. Similiar to BookmarkList
+        '.kiss-statistics-header-cell {',
+        '    border-style: none !important;',
+        '    border-width: 0px !important;',
+        '    border-bottom-style: solid !important;',
+        '    border-bottom-width: 1px !important;',
+        // make header text bigger, bold and centered
+        '    font-size: 120%;',
+        '    font-weight: bold;',
+        '    text-align: center;',
+        '}',
 
-		// default black background for a row entry
-		'.kiss-statistics-table-row {',
-		'	background-color: ' + COLOR_BG_DEFAULT + ';',
-		'	height: 25px;',
-		'}',
+        // default black background for a row entry
+        '.kiss-statistics-table-row {',
+        '    background-color: ' + COLOR_BG_DEFAULT + ';',
+        '    height: 25px;',
+        '}',
 
-		// odd rows get the same highlighting as the BookmarkList ones
-		'.kiss-statistics-table-row-odd {',
-		'	background: none repeat scroll 0 0 ' + COLOR_BG_ODD + ';',
-		'}',
+        // odd rows get the same highlighting as the BookmarkList ones
+        '.kiss-statistics-table-row-odd {',
+        '    background: none repeat scroll 0 0 ' + COLOR_BG_ODD + ';',
+        '}',
 
-		// copy BookmarkList hover effect
-		'.kiss-statistics-table-row-hover {',
-		'	background: none repeat scroll 0 0 ' + COLOR_BG_HOVER + ';',
-		'}',
+        // copy BookmarkList hover effect
+        '.kiss-statistics-table-row-hover {',
+        '    background: none repeat scroll 0 0 ' + COLOR_BG_HOVER + ';',
+        '}',
 
-		// no borders and default centered cells
-		'.kiss-statistics-cell {',
-		'	border: none !important;',
-		'	border-width: 0px !important; ',
-		'	text-align: center;',
-		'}',
+        // no borders and default centered cells
+        '.kiss-statistics-cell {',
+        '    border: none !important;',
+        '    border-width: 0px !important; ',
+        '    text-align: center;',
+        '}',
 
-		// the sites link color
-		'.kiss-statistics-row-numbers {',
-		'	color: ' + COLOR_ROW_NUMBERS + ';',
-		'}'
-	];
+        // the sites link color
+        '.kiss-statistics-row-numbers {',
+        '    color: ' + COLOR_ROW_NUMBERS + ';',
+        '}'
+    ];
     styleNode.textContent = styleContent.join("");
 
     document.head.appendChild(styleNode);
